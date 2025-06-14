@@ -1,0 +1,337 @@
+mysql> create database task;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> use task;
+Database changed
+mysql> create table studentprofile(rollno int(10) primary key, name varchar(10) foreign key,date_of_birth date, department char(10) not null, city char(10) not null); 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key,date_of_birth date, department char(10) not null, city char(10) not ' at line 1
+mysql> create table studentprofile(rollno int(10) primary key, name varchar(10) foreign key,date_of_birth date, department char(10) notnull, city char(10) notnull); 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key,date_of_birth date, department char(10) notnull, city char(10) notnu' at line 1
+mysql> create table studentprofile(rollno int(10) primary key, name varchar(10) foreign key, date_of_birth date, department char(10) notnull, city char(10) notnull); 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key, date_of_birth date, department char(10) notnull, city char(10) notn' at line 1
+mysql> create table studentprofile(rollno int primary key, name varchar foreign key, date_of_birth date, department char notnull, city char notnull); 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key, date_of_birth date, department char notnull, city char notnull)' at line 1
+mysql> create table studentprofile(rollno int(10) primarykey, name varchar(10) foreignkey, date_of_birth date, department char(10) not null, city char(10) not null); 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'primarykey, name varchar(10) foreignkey, date_of_birth date, department char(10)' at line 1
+mysql> create table studentprofile(rollno int primary key, name varchar(10) foreignkey, date_of_birth date, department char(10) not null, city char(10) not null); 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreignkey, date_of_birth date, department char(10) not null, city char(10) not ' at line 1
+mysql> create table studentprofile(rollno int primary key, name varchar(10), date_of_birth date, department char(10) not null, city char(10) not null); 
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> desc studentprofile;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| rollno        | int         | NO   | PRI | NULL    |       |
+| name          | varchar(10) | YES  |     | NULL    |       |
+| date_of_birth | date        | YES  |     | NULL    |       |
+| department    | char(10)    | NO   |     | NULL    |       |
+| city          | char(10)    | NO   |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> create table marks(rollno int foreign key, name varchar(10), mark1 int(5), mark2 int(5));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key, name varchar(10), mark1 int(5), mark2 int(5))' at line 1
+mysql> create table marks(rollno int primary key, name varchar(10), mark1 int(5), mark2 int(5));
+Query OK, 0 rows affected, 2 warnings (0.12 sec)
+
+mysql> desc marks;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| rollno | int         | NO   | PRI | NULL    |       |
+| name   | varchar(10) | YES  |     | NULL    |       |
+| mark1  | int         | YES  |     | NULL    |       |
+| mark2  | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into studentprofile(rollno, name, date_of_birth, department, city) values(1, 'Ridha','2000_02_12', 'CS', 'Chennai');
+Query OK, 1 row affected, 1 warning (0.02 sec)
+
+mysql> insert into studentprofile(rollno, name, date_of_birth, department, city) values(2, 'Kavya','2001_02_24', 'CS', 'Chennai');
+Query OK, 1 row affected, 1 warning (0.01 sec)
+
+mysql> insert into studentprofile(rollno, name, date_of_birth, department, city) values(3, 'Akash','2000_04_16', 'BCA', 'Coimbatore');
+Query OK, 1 row affected, 1 warning (0.01 sec)
+
+mysql> select * from studentprofile;
++--------+-------+---------------+------------+------------+
+| rollno | name  | date_of_birth | department | city       |
++--------+-------+---------------+------------+------------+
+|      1 | Ridha | 2000-02-12    | CS         | Chennai    |
+|      2 | Kavya | 2001-02-24    | CS         | Chennai    |
+|      3 | Akash | 2000-04-16    | BCA        | Coimbatore |
++--------+-------+---------------+------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> desc marks;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| rollno | int         | NO   | PRI | NULL    |       |
+| name   | varchar(10) | YES  |     | NULL    |       |
+| mark1  | int         | YES  |     | NULL    |       |
+| mark2  | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into marks(rollno, name, mark1, mark2) values(1, 'Naveen', '75', '80');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into marks(rollno, name, mark1, mark2) values(2, 'Dhivya', '71', '82');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into marks(rollno, name, mark1, mark2) values(3, 'Akshaya', '90', '96');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from marks;
++--------+---------+-------+-------+
+| rollno | name    | mark1 | mark2 |
++--------+---------+-------+-------+
+|      1 | Naveen  |    75 |    80 |
+|      2 | Dhivya  |    71 |    82 |
+|      3 | Akshaya |    90 |    96 |
++--------+---------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table marks add total int(7);
+Query OK, 0 rows affected, 1 warning (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> desc marks;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| rollno | int         | NO   | PRI | NULL    |       |
+| name   | varchar(10) | YES  |     | NULL    |       |
+| mark1  | int         | YES  |     | NULL    |       |
+| mark2  | int         | YES  |     | NULL    |       |
+| total  | int         | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from marks;
++--------+---------+-------+-------+-------+
+| rollno | name    | mark1 | mark2 | total |
++--------+---------+-------+-------+-------+
+|      1 | Naveen  |    75 |    80 |  NULL |
+|      2 | Dhivya  |    71 |    82 |  NULL |
+|      3 | Akshaya |    90 |    96 |  NULL |
++--------+---------+-------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from studentprofile;
++--------+-------+---------------+------------+------------+
+| rollno | name  | date_of_birth | department | city       |
++--------+-------+---------------+------------+------------+
+|      1 | Ridha | 2000-02-12    | CS         | Chennai    |
+|      2 | Kavya | 2001-02-24    | CS         | Chennai    |
+|      3 | Akash | 2000-04-16    | BCA        | Coimbatore |
++--------+-------+---------------+------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from marks;
++--------+---------+-------+-------+-------+
+| rollno | name    | mark1 | mark2 | total |
++--------+---------+-------+-------+-------+
+|      1 | Naveen  |    75 |    80 |  NULL |
+|      2 | Dhivya  |    71 |    82 |  NULL |
+|      3 | Akshaya |    90 |    96 |  NULL |
++--------+---------+-------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> update table marks (mark1+mark2) in total;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table marks (mark1+mark2) in total' at line 1
+mysql> update marks set total=mark1+mark2;
+Query OK, 3 rows affected (0.01 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> select * from marks;
++--------+---------+-------+-------+-------+
+| rollno | name    | mark1 | mark2 | total |
++--------+---------+-------+-------+-------+
+|      1 | Naveen  |    75 |    80 |   155 |
+|      2 | Dhivya  |    71 |    82 |   153 |
+|      3 | Akshaya |    90 |    96 |   186 |
++--------+---------+-------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from studentprofile;
++--------+-------+---------------+------------+------------+
+| rollno | name  | date_of_birth | department | city       |
++--------+-------+---------------+------------+------------+
+|      1 | Ridha | 2000-02-12    | CS         | Chennai    |
+|      2 | Kavya | 2001-02-24    | CS         | Chennai    |
+|      3 | Akash | 2000-04-16    | BCA        | Coimbatore |
++--------+-------+---------------+------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into studentprofile(rollno, name, date_of_birth, department, city) values(4, 'Dhanya', '2002_07_21', 'IT', 'Coimbatore'); 
+Query OK, 1 row affected, 1 warning (0.02 sec)
+
+mysql> insert into studentprofile(rollno, name, date_of_birth, department, city) values(5, 'Kalish', '2002_07_18', 'IT', 'Banglore'); 
+Query OK, 1 row affected, 1 warning (0.01 sec)
+
+mysql> select * from studentprofile;
++--------+--------+---------------+------------+------------+
+| rollno | name   | date_of_birth | department | city       |
++--------+--------+---------------+------------+------------+
+|      1 | Ridha  | 2000-02-12    | CS         | Chennai    |
+|      2 | Kavya  | 2001-02-24    | CS         | Chennai    |
+|      3 | Akash  | 2000-04-16    | BCA        | Coimbatore |
+|      4 | Dhanya | 2002-07-21    | IT         | Coimbatore |
+|      5 | Kalish | 2002-07-18    | IT         | Banglore   |
++--------+--------+---------------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> delete from studentprofile where name='Dhanya';
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from studentprofile;
++--------+--------+---------------+------------+------------+
+| rollno | name   | date_of_birth | department | city       |
++--------+--------+---------------+------------+------------+
+|      1 | Ridha  | 2000-02-12    | CS         | Chennai    |
+|      2 | Kavya  | 2001-02-24    | CS         | Chennai    |
+|      3 | Akash  | 2000-04-16    | BCA        | Coimbatore |
+|      5 | Kalish | 2002-07-18    | IT         | Banglore   |
++--------+--------+---------------+------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from marks;
++--------+---------+-------+-------+-------+
+| rollno | name    | mark1 | mark2 | total |
++--------+---------+-------+-------+-------+
+|      1 | Naveen  |    75 |    80 |   155 |
+|      2 | Dhivya  |    71 |    82 |   153 |
+|      3 | Akshaya |    90 |    96 |   186 |
++--------+---------+-------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table marks add average and grade;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'and grade' at line 1
+mysql> alter table marks add average int(10);
+Query OK, 0 rows affected, 1 warning (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> alter table marks add grade char(5);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from marks;
++--------+---------+-------+-------+-------+---------+-------+
+| rollno | name    | mark1 | mark2 | total | average | grade |
++--------+---------+-------+-------+-------+---------+-------+
+|      1 | Naveen  |    75 |    80 |   155 |    NULL | NULL  |
+|      2 | Dhivya  |    71 |    82 |   153 |    NULL | NULL  |
+|      3 | Akshaya |    90 |    96 |   186 |    NULL | NULL  |
++--------+---------+-------+-------+-------+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> update table marks (maek1+mark2)=avg;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table marks (maek1+mark2)=avg' at line 1
+mysql> update table marks (maek1+mark2)=average;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table marks (maek1+mark2)=average' at line 1
+mysql> update table marks (mark1+mark2)=average;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table marks (mark1+mark2)=average' at line 1
+mysql> select avg(155) as avg_155, from marks;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from marks' at line 1
+mysql> select average(155) as average_155, from marks;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from marks' at line 1
+mysql> select 1, Naveen,(75+80)/2.0 as average from marks;
+ERROR 1054 (42S22): Unknown column 'Naveen' in 'field list'
+mysql> update marks set average=(mark1+mark2)/2;
+Query OK, 3 rows affected (0.01 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> select * from marks;
++--------+---------+-------+-------+-------+---------+-------+
+| rollno | name    | mark1 | mark2 | total | average | grade |
++--------+---------+-------+-------+-------+---------+-------+
+|      1 | Naveen  |    75 |    80 |   155 |      78 | NULL  |
+|      2 | Dhivya  |    71 |    82 |   153 |      77 | NULL  |
+|      3 | Akshaya |    90 |    96 |   186 |      93 | NULL  |
++--------+---------+-------+-------+-------+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> update marks set grade;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> update marks set grade = case when average>=50 then 'A' else 'F' end;
+Query OK, 3 rows affected (0.01 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> select * from marks;
++--------+---------+-------+-------+-------+---------+-------+
+| rollno | name    | mark1 | mark2 | total | average | grade |
++--------+---------+-------+-------+-------+---------+-------+
+|      1 | Naveen  |    75 |    80 |   155 |      78 | A     |
+|      2 | Dhivya  |    71 |    82 |   153 |      77 | A     |
+|      3 | Akshaya |    90 |    96 |   186 |      93 | A     |
++--------+---------+-------+-------+-------+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> delete column average;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'column average' at line 1
+mysql> alter table marks drop column average;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from marks;
++--------+---------+-------+-------+-------+-------+
+| rollno | name    | mark1 | mark2 | total | grade |
++--------+---------+-------+-------+-------+-------+
+|      1 | Naveen  |    75 |    80 |   155 | A     |
+|      2 | Dhivya  |    71 |    82 |   153 | A     |
+|      3 | Akshaya |    90 |    96 |   186 | A     |
++--------+---------+-------+-------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> delete from marks;
+Query OK, 3 rows affected (0.01 sec)
+
+mysql> select * from marks;
+Empty set (0.00 sec)
+
+mysql> desc marks;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| rollno | int         | NO   | PRI | NULL    |       |
+| name   | varchar(10) | YES  |     | NULL    |       |
+| mark1  | int         | YES  |     | NULL    |       |
+| mark2  | int         | YES  |     | NULL    |       |
+| total  | int         | YES  |     | NULL    |       |
+| grade  | char(5)     | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> desc student profile;
+ERROR 1146 (42S02): Table 'task.student' doesn't exist
+mysql> desc studentprofile;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| rollno        | int         | NO   | PRI | NULL    |       |
+| name          | varchar(10) | YES  |     | NULL    |       |
+| date_of_birth | date        | YES  |     | NULL    |       |
+| department    | char(10)    | NO   |     | NULL    |       |
+| city          | char(10)    | NO   |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from studentprofile;
++--------+--------+---------------+------------+------------+
+| rollno | name   | date_of_birth | department | city       |
++--------+--------+---------------+------------+------------+
+|      1 | Ridha  | 2000-02-12    | CS         | Chennai    |
+|      2 | Kavya  | 2001-02-24    | CS         | Chennai    |
+|      3 | Akash  | 2000-04-16    | BCA        | Coimbatore |
+|      5 | Kalish | 2002-07-18    | IT         | Banglore   |
++--------+--------+---------------+------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from marks;
+Empty set (0.00 sec)
+
+mysql> notee;
